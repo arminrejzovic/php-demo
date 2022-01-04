@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poll</title>
+</head>
+<body>
+<button value="submit" onclick="search()">SUBMIT</button>
+
+</body>
+
+<script>
+    let search = () => {
+        let id=1;
+        let data = fetch(`../server/get_by_index.php?id=${id}`, {
+            'headers': {
+                'Accept': 'text/html',
+                'Content-Type': 'text/html'
+            },
+            'method':'GET'
+        })
+            .then((response) => response.text())
+            .then((responseText)=>{
+                console.info("Response?");
+                console.info(JSON.parse(responseText)[0].option1);     // result: "The name param is received!...(and the rest of your page)
+            });
+    }
+</script>
+</html>
